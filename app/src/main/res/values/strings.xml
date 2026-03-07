@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Android SMTP Client</string>
+    <string name="btn_send">Send</string>
+    <string name="log">Log:</string>
+    <string name="type_imp_tls">Implicit TLS</string>
+    <string name="type_tls">STARTTLS (recommended)</string>
+    <string name="password">Password:</string>
+    <string name="username">Email:</string>
+    <string name="port">Port:</string>
+    <string name="title">Subject:</string>
+    <string name="content">Message:</string>
+    <string name="proto">Protocol:</string>
+    <string name="server">Server:</string>
+    <string name="btn_add">Add Attachment</string>
+    <string name="tips">Avoid attaching large files. For testing, use text or small images.</string>
+    <string name="verify">Disable certificate validation (keep enabled for local testing)</string>
+    <string name="to">To:</string>
+    <string name="default_server">192.168.0.104</string>
+    <string name="default_port_tls">465</string>
+    <string name="default_port_start_tls">587</string>
+    <string name="default_to">i@lalaki.cn</string>
+</resources>

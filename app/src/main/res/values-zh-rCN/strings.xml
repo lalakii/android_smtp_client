@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Android SMTP Client</string>
+    <string name="btn_send">发送</string>
+    <string name="log">日志输出:</string>
+    <string name="type_imp_tls">IMPLICIT_TLS</string>
+    <string name="type_tls">STARTTLS(推荐)</string>
+    <string name="password">密码:</string>
+    <string name="username">邮箱:</string>
+    <string name="port">端口:</string>
+    <string name="title">主题:</string>
+    <string name="content">正文:</string>
+    <string name="proto">协议:</string>
+    <string name="server">服务器:</string>
+    <string name="btn_add">添加附件</string>
+    <string name="tips">不要使用大文件作为附件，测试时使用建议文本或者图片</string>
+    <string name="verify">禁用证书一致性验证(本地测试时保持启用)</string>
+    <string name="to">收件人:</string>
+    <string name="default_server">192.168.0.104</string>
+    <string name="default_port_tls">465</string>
+    <string name="default_port_start_tls">587</string>
+    <string name="default_to">i@lalaki.cn</string>
+</resources>

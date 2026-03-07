@@ -1,0 +1,34 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace = 'cn.lalaki.smtp.test'
+    compileSdkPreview = "CinnamonBun"
+    defaultConfig {
+        applicationId "cn.lalaki"
+        minSdk 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 27
+        versionCode 2
+        versionName "2.3"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        release {
+            shrinkResources = true
+            minifyEnabled true
+        }
+    }
+    packagingOptions {
+        exclude "/kotlin/**"
+        exclude "/META-INF/**"
+    }
+}
+dependencies {
+    implementation(project(':library'))
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.github.xxinPro:FileSelector:1.0'
+}
