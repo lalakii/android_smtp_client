@@ -1,0 +1,103 @@
+plugins {
+    id 'com.android.library'
+    id 'cn.lalaki.central'
+}
+android {
+    namespace = 'cn.lalaki.smtp'
+    compileSdk {
+        version = preview('CinnamonBun')
+    }
+    defaultConfig {
+        minSdk 9
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+dependencies {
+    implementation 'androidx.annotation:annotation-jvm:1.9.1'
+}
+def finalRepo = uri("D:\\repo\\")
+centralPortalPlus {
+    url = finalRepo
+    tokenXml = uri("D:\\BIN\\token.txt")
+}
+tasks.register('androidSourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                url = finalRepo
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                artifact(tasks.named("bundleReleaseAar"))
+                artifact androidSourcesJar
+                pom.withXml {
+                    //noinspection GroovyImplicitNullArgumentCall
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    configurations.implementation.allDependencies.each { dependency ->
+                        if (dependency.group != null && dependency.name != null &&
+                                dependency.version != null && dependency.version != "unspecified") {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dependency.group)
+                            dependencyNode.appendNode('artifactId', dependency.name)
+                            dependencyNode.appendNode('version', dependency.version)
+                            // dependencyNode.appendNode('scope', 'runtime')
+                        } else {
+                            println ">>> [WARN] Excluded module: ${dependency.group}:${dependency.name}"
+                        }
+                    }
+                }
+                pom {
+                    name = projectName
+                    artifactId = projectName
+                    groupId = "cn.lalaki"
+                    version = releaseVersion
+                    description = "SmtpClient is a lightweight, pure-Java SMTP client library for Android.It supports STARTTLS (port 587) and implicit TLS (port 465), AUTH LOGIN, UTF-8 subjects and HTML bodies (base64), priority levels, and a simple callback listener for success/error/log.Designed for minimal dependencies and easy integration into Android apps that need to send emails programmatically."
+                    url = projectUrl
+                    licenses {
+                        license {
+                            name = projectLicense
+                            url = projectLicenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = 'lalakii'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:' + projectUrl + '.git'
+                        url = projectUrl
+                    }
+                    organization {
+                        name = "lalaki.cn"
+                        url = projectUrl
+                    }
+                }
+            }
+        }
+    }
+    signing {
+        useGpgCmd()
+        sign publishing.publications
+    }
+}
+ext {
+    projectName = "android_smtp_client"
+    projectUrl = "https://github.com/lalakii/android_smtp_client"
+    projectLicense = "MIT License"
+    projectLicenseUrl = "https://opensource.org/license/mit"
+    releaseVersion = "3.1.1"
+}
