@@ -1,6 +1,7 @@
 # Android SMTP Client
 
 [![Maven Central](https://img.shields.io/maven-central/v/cn.lalaki/android_smtp_client.svg?label=Maven%20Central&logo=sonatype)](https://central.sonatype.com/artifact/cn.lalaki/android_smtp_client)
+[![Downloads](https://img.shields.io/github/downloads/lalakii/android_smtp_client/total)](https://github.com/lalakii/android_smtp_client/releases)
 ![License: MIT (shields.io)](https://img.shields.io/badge/License-MIT-2F9D66?logo=github)
 
 SmtpClient is a lightweight, pure-Java SMTP client library for Android.It supports STARTTLS (port 587) and implicit TLS (port 465), AUTH LOGIN, UTF-8 subjects and HTML bodies (base64), priority levels, and a simple callback listener for success/error/log.Designed for minimal dependencies and easy integration into Android apps that need to send emails programmatically.
